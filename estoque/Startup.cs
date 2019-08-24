@@ -29,6 +29,7 @@ namespace estoque
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<ICategoriaServico, CategoriaServico>();
+            services.AddSingleton<IProdutoServico, ProdutoServico>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

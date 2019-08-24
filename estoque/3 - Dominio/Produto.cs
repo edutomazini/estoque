@@ -10,14 +10,15 @@ namespace Dominio
     {
         public Produto()
         {
-            DataCadastro = DateTime.Now;
+            //DataCadastro = DateTime.Now;
         }
 
         [Key]
         public int IdProduto { get; set; }
-        public DateTime? DataCadastro { get; set; }
-        public string Nome { get; set; }
-        public int Quantidade { get; set; }
+        //public DateTime? DataCadastro { get; set; }
+        public string NomeProduto { get; set; }
+        public int ?Quantidade { get; set; }
         public int IdCategoria { get; set; }
+        public Categoria Categoria { get; set; }
     }
 }

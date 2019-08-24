@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Aplicacao.Interfaces;
 using Dominio;
@@ -12,42 +13,88 @@ namespace estoque.Controllers
     [ApiController]
     public class ProdutoController : ControllerBase
     {
-        /*readonly IProdutoServico _ProdutoServico;
+        readonly IProdutoServico _ProdutoServico;
         public ProdutoController(IProdutoServico ProdutoServico)
         {
             _ProdutoServico = ProdutoServico;
         }
         // GET api/values
         [HttpGet]
-        public IList<Produto> Get()
+        public Object Get()
         {
-            return _ProdutoServico.Listar();
-            //return new string[] { "value1", "value2" };
-        }*/
+            try
+            {
+                return _ProdutoServico.Listar();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+            
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public Object Get(int id)
         {
-            return "value";
+            try
+            {
+                return _ProdutoServico.ListarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+            
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Object Post([FromBody] Produto Produto)
         {
+            try
+            {
+                _ProdutoServico.Cadastrar(Produto);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+            
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Object Put(int id, [FromBody] Produto Produto)
         {
+            try
+            {
+                Produto.IdProduto = id;
+                _ProdutoServico.Alterar(Produto);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+ 
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Object Delete(int id)
         {
+            try
+            {
+                _ProdutoServico.Excluir(id);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+            
         }
     }
 }

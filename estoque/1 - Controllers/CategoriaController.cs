@@ -19,38 +19,82 @@ namespace estoque.Controllers
         }
         // GET api/values
         [HttpGet]
-        public IList<Categoria> Get()
+        public object Get()
         {
-            return _CategoriaServico.Listar();
+            try
+            {
+                return _CategoriaServico.Listar();
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Categoria Get(int id)
+        public object Get(int id)
         {
-            return _CategoriaServico.ListarPorId(id);
+            try
+            {
+                return _CategoriaServico.ListarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] Categoria Categoria)
+        public object Post([FromBody] Categoria Categoria)
         {
-            _CategoriaServico.Cadastrar(Categoria);
+            try
+            {
+                _CategoriaServico.Cadastrar(Categoria);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Categoria Categoria)
+        public object Put(int id, [FromBody] Categoria Categoria)
         {
-            Categoria.IdCategoria = id;
-            _CategoriaServico.Alterar(Categoria);
+            try
+            {
+                Categoria.IdCategoria = id;
+                _CategoriaServico.Alterar(Categoria);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public object Delete(int id)
         {
-            _CategoriaServico.Excluir(id);
+            try
+            {
+                _CategoriaServico.Excluir(id);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, "{ \"erro\": \"" + ex.Message + "\"}");
+            }
+
         }
     }
 }

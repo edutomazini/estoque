@@ -22,38 +22,17 @@ namespace Aplicacao
 
         public void Cadastrar(Categoria Objeto)
         {
-            try
-            {
-                _CategoriaRepositorio.Cadastrar(Objeto);
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
+            _CategoriaRepositorio.Cadastrar(Objeto);
         }
 
         public void Excluir(int Id)
         {
-            try
-            {
-                _CategoriaRepositorio.Excluir(Id);
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
+            _CategoriaRepositorio.Excluir(Id);
         }
 
         public IList<Categoria> Listar()
         {
-            try
-            {
-                return _CategoriaRepositorio.Listar();
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
+            return _CategoriaRepositorio.Listar();
         }
 
         public IList<Categoria> ListarCategoriaFiltro(string nome)
@@ -63,14 +42,7 @@ namespace Aplicacao
 
         public Categoria ListarPorId(int Id)
         {
-            try
-            {
-                return _CategoriaRepositorio.ListarPorId(Id);
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
+            return _CategoriaRepositorio.ListarPorId(Id);
         }
     }
 }

@@ -1,15 +1,20 @@
 ﻿using Dominio;
 using MySql.Data.MySqlClient;
+using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Repositorio
 {
-    public class CategoriaRepositorio : Interfaces.ICategoriaRepositorio
+    public class CategoriaRepositorio : ICategoriaRepositorio
     {
         public void Alterar(Categoria Categoria)
         {
+            Categoria CategoriaAlterar = this.ListarPorId(Categoria.IdCategoria);
+            if (CategoriaAlterar == null)
+                throw new Exception("Categoria inexistente");
+
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
             using (var cmd = new MySqlCommand("sp_categoria_alterar", _MySqlConnection))
             {
