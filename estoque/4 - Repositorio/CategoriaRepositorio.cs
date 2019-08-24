@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -7,18 +8,28 @@ namespace Repositorio
 {
     public class CategoriaRepositorio : Interfaces.ICategoriaRepositorio
     {
-        public void Alterar(Categoria Objeto)
+        public void Alterar(Categoria Categoria)
         {
-            throw new System.NotImplementedException();
+            using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
+            using (var cmd = new MySqlCommand("sp_categoria_alterar", _MySqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_CATEGORIA", Categoria.IdCategoria);
+                cmd.Parameters.AddWithValue("@NOME", Categoria.NomeCategoria);
+
+                _MySqlConnection.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void Cadastrar(Categoria Categoria)
         {
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
-            using (var cmd = new MySqlCommand("[sp_categoria_inserir]", _MySqlConnection))
+            using (var cmd = new MySqlCommand("sp_categoria_inserir", _MySqlConnection))
             {
-                cmd.Parameters.AddWithValue("@NOME", Categoria.NomeCategoria);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NOME", Categoria.NomeCategoria);
+                
                 _MySqlConnection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -26,12 +37,40 @@ namespace Repositorio
 
         public void Excluir(int Id)
         {
-            throw new System.NotImplementedException();
+            using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
+            using (var cmd = new MySqlCommand("sp_categoria_excluir", _MySqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_CATEGORIA", Id);
+
+                _MySqlConnection.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
-        public IList<Categoria> Listar()
+        public List<Categoria> Listar()
         {
-            throw new System.NotImplementedException();
+            Categoria Categoria;
+            List<Categoria> Categorias;
+            using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
+            using (var cmd = new MySqlCommand("sp_categoria_listar", _MySqlConnection))
+            {
+                Categorias = new List<Categoria>();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                _MySqlConnection.Open();
+
+                MySqlDataReader sdr = cmd.ExecuteReader();
+                
+                while (sdr.Read())
+                {
+                    Categoria = new Categoria();
+                    Categoria.IdCategoria = Convert.ToInt32(sdr["id"]);
+                    Categoria.NomeCategoria = sdr["nome"].ToString();
+                    Categorias.Add(Categoria);
+                }
+            }
+            return Categorias;
         }
 
         public IList<Categoria> ListarCategoriaFiltro(string nome)
@@ -41,7 +80,17 @@ namespace Repositorio
 
         public Categoria ListarPorId(int Id)
         {
-            throw new System.NotImplementedException();
+            Categoria Categoria;
+            List<Categoria> Categorias;
+
+            Categoria = new Categoria();
+            Categorias = new List<Categoria>();
+
+            Categorias = this.Listar();
+
+            Categoria = Categorias.Find(o => o.IdCategoria == Id);
+
+            return Categoria;
         }
     }
 }

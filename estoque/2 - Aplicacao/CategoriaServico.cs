@@ -17,7 +17,7 @@ namespace Aplicacao
 
         public void Alterar(Categoria Objeto)
         {
-            throw new System.NotImplementedException();
+            _CategoriaRepositorio.Alterar(Objeto);
         }
 
         public void Cadastrar(Categoria Objeto)
@@ -34,12 +34,26 @@ namespace Aplicacao
 
         public void Excluir(int Id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _CategoriaRepositorio.Excluir(Id);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         public IList<Categoria> Listar()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                return _CategoriaRepositorio.Listar();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         public IList<Categoria> ListarCategoriaFiltro(string nome)
@@ -49,7 +63,14 @@ namespace Aplicacao
 
         public Categoria ListarPorId(int Id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                return _CategoriaRepositorio.ListarPorId(Id);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
     }
 }

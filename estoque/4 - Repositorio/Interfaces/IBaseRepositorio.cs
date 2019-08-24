@@ -10,7 +10,7 @@ namespace Repositorio.Interfaces
         void Cadastrar(T Objeto);
         void Alterar(T Objeto);
         void Excluir(int Id);
-        IList<T> Listar();
+        List<T> Listar();
         T ListarPorId(int Id);
     }
 }
