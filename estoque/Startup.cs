@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aplicacao;
+using Aplicacao.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace estoque
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Repositorio.ConexaoBanco.ConexaoMySQL = Configuration.GetConnectionString("DefaultConnection");
         }
 
         public IConfiguration Configuration { get; }
@@ -25,6 +28,7 @@ namespace estoque
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<ICategoriaServico, CategoriaServico>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

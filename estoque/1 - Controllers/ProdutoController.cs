@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aplicacao.Interfaces;
+using Dominio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace estoque.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ProdutoController : ControllerBase
     {
+        /*readonly IProdutoServico _ProdutoServico;
+        public ProdutoController(IProdutoServico ProdutoServico)
+        {
+            _ProdutoServico = ProdutoServico;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IList<Produto> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            return _ProdutoServico.Listar();
+            //return new string[] { "value1", "value2" };
+        }*/
 
         // GET api/values/5
         [HttpGet("{id}")]
