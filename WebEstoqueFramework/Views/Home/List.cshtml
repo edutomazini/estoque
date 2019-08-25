@@ -1,0 +1,31 @@
+﻿@model WebEstoque.LstProdutos
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Produtos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Quantidade
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Produtos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeProduto)
+            </td>
+        </tr>
+    }
+
+</table>
