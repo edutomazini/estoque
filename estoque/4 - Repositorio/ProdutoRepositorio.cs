@@ -4,18 +4,26 @@ using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Repositorio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ProdutoRepositorio : IProdutoRepositorio
     {
         readonly ICategoriaRepositorio _CategoriaRepositorio;
+        /// <summary>
+        /// 
+        /// </summary>
         public ProdutoRepositorio()
         {
             _CategoriaRepositorio = new CategoriaRepositorio();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Produto"></param>
         public void Alterar(Produto Produto)
         {
             Produto ProdutoAlterar = this.ListarPorId(Produto.IdProduto);
@@ -43,6 +51,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Produto"></param>
         public void Cadastrar(Produto Produto)
         {
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
@@ -58,6 +70,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
         public void Excluir(int Id)
         {
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
@@ -71,6 +87,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Produto> Listar()
         {
             Produto Produto;
@@ -99,6 +119,11 @@ namespace Repositorio
             return Produtos;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Produto ListarPorId(int Id)
         {
             Produto Produto;

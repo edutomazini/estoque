@@ -1,23 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Aplicacao.Interfaces;
 using Dominio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace estoque.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriaController : ControllerBase
     {
         readonly ICategoriaServico _CategoriaServico;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CategoriaServico"></param>
         public CategoriaController(ICategoriaServico CategoriaServico)
         {
             _CategoriaServico = CategoriaServico;
         }
-        // GET api/values
+        /// <summary>
+        /// Retorna todas as Categorias
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public object Get()
         {
@@ -33,7 +40,11 @@ namespace estoque.Controllers
 
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Retornar uma categoria por ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public object Get(int id)
         {
@@ -48,7 +59,11 @@ namespace estoque.Controllers
 
         }
 
-        // POST api/values
+        /// <summary>
+        /// Grava Categoria
+        /// </summary>
+        /// <param name="Categoria"></param>
+        /// <returns></returns>
         [HttpPost]
         public object Post([FromBody] Categoria Categoria)
         {
@@ -64,7 +79,12 @@ namespace estoque.Controllers
 
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Altera Categoria
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Categoria"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public object Put(int id, [FromBody] Categoria Categoria)
         {
@@ -81,7 +101,11 @@ namespace estoque.Controllers
 
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// Deleta uma Categoria por ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public object Delete(int id)
         {

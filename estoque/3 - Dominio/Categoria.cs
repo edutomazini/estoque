@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Dominio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Categoria
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]
         public int IdCategoria { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string NomeCategoria { get; set; }
     }
 }

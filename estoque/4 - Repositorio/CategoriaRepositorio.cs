@@ -7,8 +7,15 @@ using System.Data;
 
 namespace Repositorio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CategoriaRepositorio : ICategoriaRepositorio
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Categoria"></param>
         public void Alterar(Categoria Categoria)
         {
             Categoria CategoriaAlterar = this.ListarPorId(Categoria.IdCategoria);
@@ -27,6 +34,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Categoria"></param>
         public void Cadastrar(Categoria Categoria)
         {
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
@@ -40,6 +51,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
         public void Excluir(int Id)
         {
             using (MySqlConnection _MySqlConnection = new MySqlConnection(ConexaoBanco.ConexaoMySQL))
@@ -53,6 +68,10 @@ namespace Repositorio
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Categoria> Listar()
         {
             Categoria Categoria;
@@ -78,11 +97,21 @@ namespace Repositorio
             return Categorias;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <returns></returns>
         public IList<Categoria> ListarCategoriaFiltro(string nome)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Categoria ListarPorId(int Id)
         {
             Categoria Categoria;

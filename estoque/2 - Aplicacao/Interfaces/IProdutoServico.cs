@@ -1,11 +1,10 @@
 ﻿using Dominio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Aplicacao.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IProdutoServico: IBaseServico<Produto>
     {
     }
