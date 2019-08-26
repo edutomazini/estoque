@@ -5,7 +5,7 @@
   ARQUIVO <b>mysql_script.SQL</b> contem o script para a criação do banco de dados.<br>
   os dados de conexão ficam no arquivo <b>appsettings.json</b>:<br>
     "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;..."
+    "DefaultConnection": "server=localhost;user id=estoque;Pwd=123456;database=estoque"
   },<br>
   Criado banco para rodar no mysql. Com as tabelas <i>estoque</i>, <i>categoria</i>. Optou-se pela criação de <i>stored procedures</i> para retorno e manipulação de dados.<br><br>
   <b>Vai rodar na porta 8000.</b>
