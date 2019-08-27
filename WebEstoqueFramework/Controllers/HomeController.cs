@@ -27,12 +27,12 @@ namespace WebEstoqueFramework.Controllers
 
             var request = new RestRequest("/api/produto", Method.GET);
 
-            IRestResponse RestResponseProduto = client.Execute<LstProdutos>(request);
+            IRestResponse RestResponseProduto = client.Execute<List<Produto>>(request);
             //IRestResponse RestResponseProduto = client.Execute<List<Produto>>(request);
 
             if (RestResponseProduto.StatusCode == HttpStatusCode.OK)
             {
-                lstProdutos = JsonConvert.DeserializeObject<LstProdutos>(RestResponseProduto.Content);
+                lstProdutos.Produtos = JsonConvert.DeserializeObject<List<Produto>>(RestResponseProduto.Content);
                 //lstProdutos = JsonConvert.DeserializeObject<List<Produto>>(RestResponseProduto.Content);
                 return View(lstProdutos);
             }

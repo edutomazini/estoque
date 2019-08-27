@@ -21,11 +21,17 @@
 
     @foreach (var item in Model.Produtos)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeProduto)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)
+        </td>
+    </tr>
     }
 
 </table>
