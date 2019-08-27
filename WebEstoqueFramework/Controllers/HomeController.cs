@@ -20,7 +20,7 @@ namespace WebEstoqueFramework.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            LstProdutos lstProdutos = new LstProdutos();       // => assim nao funciona o JsonConvert
+            LstProdutos lstProdutos = new LstProdutos();       // => (agora funciona) assim nao funciona o JsonConvert (agora funciona)
             //List<Produto> lstProdutos = new List<Produto>(); // => Assim nao faz bind com o Model
 
             var client = new RestClient(UrlApi);
