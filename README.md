@@ -24,4 +24,6 @@ https://github.com/edutomazini/labs<br><br>
 Nao consegui terminá-lo para a versao 'Estoque'.<br>
 Tive alguns problemas na conversao dos dados da API para o MODEL.<br><br>
 
-* após atualizar os nugets, acatando uma sugestao do github, perdi o layout do <b>Web MVC</b>. Subiro que levem em conta o projeto MVC do repositorio <i>labs</i>.
+* após atualizar os nugets, acatando uma sugestao do github, perdi o layout do <b>Web MVC</b>. Subiro que levem em conta o projeto MVC do repositorio <i>labs</i>.<br>
+
+* problema resolvido, pelo menos lista os produtos. Estava cometendo um erro classico no <i>model</i>.
